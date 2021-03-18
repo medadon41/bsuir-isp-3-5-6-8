@@ -10,3 +10,16 @@ D:\GIT ISP 3\Lab3\Lab3\obj\Release\netcoreapp3.1\Lab3.csproj.CoreCompileInputs.c
 D:\GIT ISP 3\Lab3\Lab3\obj\Release\netcoreapp3.1\Lab3.dll
 D:\GIT ISP 3\Lab3\Lab3\obj\Release\netcoreapp3.1\Lab3.pdb
 D:\GIT ISP 3\Lab3\Lab3\obj\Release\netcoreapp3.1\Lab3.genruntimeconfig.cache
+D:\ISP 3\bsuir-isp-3\Lab3\Lab3\bin\Release\netcoreapp3.1\Lab3.exe
+D:\ISP 3\bsuir-isp-3\Lab3\Lab3\bin\Release\netcoreapp3.1\Lab3.deps.json
+D:\ISP 3\bsuir-isp-3\Lab3\Lab3\bin\Release\netcoreapp3.1\Lab3.runtimeconfig.json
+D:\ISP 3\bsuir-isp-3\Lab3\Lab3\bin\Release\netcoreapp3.1\Lab3.runtimeconfig.dev.json
+D:\ISP 3\bsuir-isp-3\Lab3\Lab3\bin\Release\netcoreapp3.1\Lab3.dll
+D:\ISP 3\bsuir-isp-3\Lab3\Lab3\bin\Release\netcoreapp3.1\Lab3.pdb
+D:\ISP 3\bsuir-isp-3\Lab3\Lab3\obj\Release\netcoreapp3.1\Lab3.csprojAssemblyReference.cache
+D:\ISP 3\bsuir-isp-3\Lab3\Lab3\obj\Release\netcoreapp3.1\Lab3.AssemblyInfoInputs.cache
+D:\ISP 3\bsuir-isp-3\Lab3\Lab3\obj\Release\netcoreapp3.1\Lab3.AssemblyInfo.cs
+D:\ISP 3\bsuir-isp-3\Lab3\Lab3\obj\Release\netcoreapp3.1\Lab3.csproj.CoreCompileInputs.cache
+D:\ISP 3\bsuir-isp-3\Lab3\Lab3\obj\Release\netcoreapp3.1\Lab3.dll
+D:\ISP 3\bsuir-isp-3\Lab3\Lab3\obj\Release\netcoreapp3.1\Lab3.pdb
+D:\ISP 3\bsuir-isp-3\Lab3\Lab3\obj\Release\netcoreapp3.1\Lab3.genruntimeconfig.cache

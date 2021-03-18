@@ -3,45 +3,14 @@
 namespace Lab3
 {
 
-    class card
-    {
-        //inspired by hearthstone
-
-        public string name;
-        public int manacost;
-        public string hero;
-        public string rarity;
-        private string id;
-
-
-        public card()
-        {
-        }
-
-        public card(string s_name, int s_mana, string s_hero, string s_rarity)
-        {
-            name = s_name;
-            manacost = s_mana;
-            hero = s_hero;
-            rarity = s_rarity;
-        }
-
-        public string ID
-        {
-            set
-            {
-                id = value;
-            }
-        }
-    }
     class Program
     {
-        static bool intCheck(string _int)
+        static bool CheckInt(string _int)
         {
             if (int.TryParse(_int, out int test)) { return true; }
             else return false;
         }
-        static void cardSetFill(ref card[] arr)
+        static void FillCardSet(ref Card[] arr)
         {
             int manacost;
             string name;
@@ -56,7 +25,7 @@ namespace Lab3
                 name = Console.ReadLine();
                 Console.Write("Enter the cost of the card: ");
                 s_mana = Console.ReadLine();
-                while (!intCheck(s_mana))
+                while (!CheckInt(s_mana))
                 {
                     Console.Write("Enter the cost of the card: ");
                     s_mana = Console.ReadLine();
@@ -66,7 +35,7 @@ namespace Lab3
                 hero = Console.ReadLine();
                 Console.Write("Enter the rarity of the card: ");
                 rarity = Console.ReadLine();
-                arr[i] = new card(name, manacost, hero, rarity);
+                arr[i] = new Card(name, manacost, hero, rarity);
                 Console.Write("Enter the id of the card: ");
                 id = Console.ReadLine();
                 arr[i].ID = id;
@@ -74,7 +43,7 @@ namespace Lab3
             }
         }
 
-        static void showCardSet(card[] arr)
+        static void ShowCardSet(Card[] arr)
         {
             for (int i = 0; i < arr.Length; i++)
             {
@@ -90,12 +59,28 @@ namespace Lab3
             Console.Write("How many cards do you want to have in your card set? ");
             int n = int.Parse(Console.ReadLine());
 
-            card[] cardSet = new card[n];
+            Card[] cardSet = new Card[n];
 
-            cardSetFill(ref cardSet);
+            FillCardSet(ref cardSet);
 
             Console.WriteLine("Your card set: \n");
-            showCardSet(cardSet);
+            ShowCardSet(cardSet);
+
+            Console.Write("Choose which card's manacost you want to change: \n");
+            int m = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter the the number of mana you want to be reduced/increased by: \n");
+
+            string _mn = Console.ReadLine();
+            while (!CheckInt(_mn))
+            {
+                Console.Write("Enter the the number of mana you want to be reduced/increased by: \n");
+                _mn = Console.ReadLine();
+            }
+
+            cardSet[m - 1].ChangeManacost(int.Parse(_mn));
+
+            ShowCardSet(cardSet);
         }
 
     }
