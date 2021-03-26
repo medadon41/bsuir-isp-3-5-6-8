@@ -5,82 +5,57 @@ namespace Lab3
 
     class Program
     {
-        static bool CheckInt(string _int)
+        static bool сheckInt(string _int)
         {
             if (int.TryParse(_int, out int test)) { return true; }
             else return false;
         }
-        static void FillCardSet(ref Card[] arr)
-        {
-            int manacost;
-            string name;
-            string hero;
-            string rarity;
-            string id;
 
-            string s_mana;
-            for (int i = 0; i < arr.Length; i++)
-            {
-                Console.Write("Enter the name of the card: ");
-                name = Console.ReadLine();
-                Console.Write("Enter the cost of the card: ");
-                s_mana = Console.ReadLine();
-                while (!CheckInt(s_mana))
-                {
-                    Console.Write("Enter the cost of the card: ");
-                    s_mana = Console.ReadLine();
-                }
-                manacost = int.Parse(s_mana);
-                Console.Write("Enter the class of the card (who can use it): ");
-                hero = Console.ReadLine();
-                Console.Write("Enter the rarity of the card: ");
-                rarity = Console.ReadLine();
-                arr[i] = new Card(name, manacost, hero, rarity);
-                Console.Write("Enter the id of the card: ");
-                id = Console.ReadLine();
-                arr[i].ID = id;
-                Console.Clear();
-            }
-        }
-
-        static void ShowCardSet(Card[] arr)
-        {
-            for (int i = 0; i < arr.Length; i++)
-            {
-                Console.WriteLine($"Card: {arr[i].name} ");
-                Console.WriteLine($"Cost: {arr[i].manacost} ");
-                Console.WriteLine($"Class: {arr[i].hero} ");
-                Console.WriteLine($"Rarity: {arr[i].rarity} ");
-                Console.WriteLine("///////////////////////");
-            }
-        }
         static void Main(string[] args)
         {
-            Console.Write("How many cards do you want to have in your card set? ");
-            int n = int.Parse(Console.ReadLine());
+            Players players = new Players();
 
-            Card[] cardSet = new Card[n];
+            players[0].board.fillBoard();
+            players[1].board.fillBoard();
 
-            FillCardSet(ref cardSet);
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Enemy Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+            players[1].board.show();
+            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            players[0].board.show();
 
-            Console.WriteLine("Your card set: \n");
-            ShowCardSet(cardSet);
+            Console.Write("\nChoose a minion which will attack (it's position on your board): ");
 
-            Console.Write("Choose which card's manacost you want to change: \n");
-            int m = int.Parse(Console.ReadLine());
+            string _minion = Console.ReadLine();
 
-            Console.Write("Enter the the number of mana you want to be reduced/increased by: \n");
-
-            string _mn = Console.ReadLine();
-            while (!CheckInt(_mn))
+            while(!int.TryParse(_minion, out int test) || int.Parse(_minion) > players[0].board.length())
             {
-                Console.Write("Enter the the number of mana you want to be reduced/increased by: \n");
-                _mn = Console.ReadLine();
+                Console.Write("Choose a minion which will attack (it's position on your board): ");
+                _minion = Console.ReadLine();
             }
 
-            cardSet[m - 1].ChangeManacost(int.Parse(_mn));
+            int minion = int.Parse(_minion) - 1;
 
-            ShowCardSet(cardSet);
+            Console.Write("\nChoose a minion to attack (it's position on enemy board): ");
+
+            string _target = Console.ReadLine();
+
+            while (!int.TryParse(_target, out int test) || int.Parse(_target) > players[1].board.length())
+            {
+                Console.Write("Choose a minion to attack (it's position on enemy board): ");
+                _target = Console.ReadLine();
+            }
+
+            int target = int.Parse(_target) - 1;
+
+            players[0].board[minion].Attack(players[1].board[target]);
+            players[0].board.Refill();
+            players[1].board.Refill();
+
+            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Enemy Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+            players[1].board.show();
+            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            players[0].board.show();
+
         }
 
     }
