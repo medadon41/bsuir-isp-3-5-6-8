@@ -19,9 +19,9 @@ namespace Lab3
             players[1].board.fillBoard();
 
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Enemy Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-            players[1].board.show();
+            players[1].board.Show();
             Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            players[0].board.show();
+            players[0].board.Show();
 
             Console.Write("\nChoose a minion which will attack (it's position on your board): ");
 
@@ -52,9 +52,37 @@ namespace Lab3
             players[1].board.Refill();
 
             Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Enemy Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-            players[1].board.show();
+            players[1].board.Show();
             Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            players[0].board.show();
+            players[0].board.Show();
+
+            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Hand~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            players[0].hand.fillHand();
+            players[0].hand.Show();
+
+            players[0].deck.fillDeck();
+
+            int pick = 0;
+            do
+            {
+                Console.WriteLine("Choose what card to cast: ");
+                switch (Console.ReadLine())
+                {
+                    case "1": players[0].hand[0].Cast(ref players); break;
+                    case "2": players[0].hand[1].Cast(ref players); break;
+                    case "3": players[0].hand[2].Cast(ref players); break;
+                    case "4": players[0].hand[3].Cast(ref players); break;
+                    default: pick = 1; break;
+                }
+            } while (pick != 0);
+
+            Console.Clear();
+            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Enemy Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+            players[1].board.Show();
+            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            players[0].board.Show();
+            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Hand~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            players[0].hand.Show();
 
         }
 

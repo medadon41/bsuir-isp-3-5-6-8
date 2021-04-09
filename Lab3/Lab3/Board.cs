@@ -37,7 +37,7 @@ namespace Lab3
             _temp = new CardMinion("Prophet Velen", 7, 7, 7, "None", "Priest", "Legendary", true, false, " ");
             board[4] = _temp;
         }
-        public void show()
+        public void Show()
         {
             //showing manacosts
             

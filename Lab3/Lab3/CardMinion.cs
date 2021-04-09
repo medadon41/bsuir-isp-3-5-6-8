@@ -6,11 +6,12 @@ namespace Lab3
 {
     class CardMinion: Card
     {
-        public int attack;
-        public int health;
         public string type = "None";
         public bool isAlive = true;
         public bool isTargetable;
+
+        public int maxHealth;
+        public override void Cast (ref Players cp) { }
 
         public CardMinion(string s_name, int s_mana, int s_attack, int s_health, string s_type, string s_hero, string s_rarity, bool s_trgt, bool s_ntrgt, string desc)
         {
@@ -24,6 +25,8 @@ namespace Lab3
             isTargetable = s_trgt;
             isTargetNeeded = s_ntrgt;
             description.Append(desc);
+            stype = SpellType.None;
+            maxHealth = s_health;
         }
 
         public void ChangeAttack(int tk)
@@ -37,7 +40,13 @@ namespace Lab3
 
         public void ChangeHealth(int hp)
         {
-            health += hp;
+            if(health + hp > maxHealth)
+            {
+                health = maxHealth;
+            } else
+            {
+                health += hp;
+            }
             if (health <= 0)
             {
                 isAlive = false;

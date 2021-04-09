@@ -4,13 +4,17 @@ using System.Text;
 
 namespace Lab3
 {
-    class Card
+    abstract class Card
     {
         //inspired by hearthstone
 
         public string name;
         public int manacost;
         public string hero;
+        public int attack;
+        public int health;
+        public bool isInHand = false;
+        public SpellType stype;
         public string rarity;
         public StringBuilder description = new StringBuilder();
         public bool isTargetNeeded;
@@ -49,6 +53,8 @@ namespace Lab3
             }
         }
 
+        public abstract void Cast(ref Players cp);
+
         public string WhatToDo(StringBuilder _desc)
         {
             string _res = _desc.ToString();
@@ -58,39 +64,61 @@ namespace Lab3
             
             for (int i = 0; i < _desc.Length; i++)
             {
-                string currWord = s_desc[i].ToLower();
-                if (s_desc[i].ToLower() == "deals")
+                if (s_desc[i].ToLower() == "deal")
                 {
+                    this.stype = SpellType.Damage;
                     result.Append("1-");
-                    result.Append($"{s_desc[i + 1]}-");
-                    if (s_desc[i+3].ToLower() == "a") {
+                    if (s_desc[i + 3].ToLower() == "a") {
+                        result.Append($"{s_desc[i + 1]}-");
                         result.Append('1');                                 //1-n-1 == deal n damage to a minion
                         _res = result.ToString();                           //1-n-2 == deal n damage to all minions
                         return _res;                                        //2-n-1 == restore n health to a minion
                     } else                                                  //2-n-2 == restore n health to all minions
-                    {
+                    {                                                       //3-1-0 == draw a card
+                        result.Append($"{s_desc[i + 1]}-");                 //3-n-0 == draw n cards
                         result.Append('2');
                         _res = result.ToString();
                         return _res;
                     }
-                } else if(s_desc[i].ToLower() == "restores")
+                } else if(s_desc[i].ToLower() == "restore")
                 {
+                    this.stype = SpellType.Heal;
                     result.Append("2-");
-                    result.Append($"{s_desc[i + 1]}-");
-                    if (s_desc[i + 3].ToLower() == "a")
+                    if (s_desc[i + 4].ToLower() == "a")
                     {
+                        result.Append($"{s_desc[i + 1]}-");
                         result.Append('1');
                         _res = result.ToString();
                         return _res;
                     }
                     else
                     {
+                        result.Append($"{s_desc[i + 1]}-");
                         result.Append('2');
+                        _res = result.ToString();
+                        return _res;
+                    }
+                } else if (s_desc[i].ToLower() == "draw")
+                {
+                    this.stype = SpellType.Draw;
+                    result.Append("3-");
+                    if (s_desc[i + 1].ToLower() == "a")
+                    {
+                        result.Append($"1-");
+                        result.Append('0');                              
+                        _res = result.ToString();                          
+                        return _res;                                        
+                    }
+                    else                                                  
+                    {
+                        result.Append($"{s_desc[i + 1]}-");
+                        result.Append('0');
                         _res = result.ToString();
                         return _res;
                     }
                 }
             }
+            this.stype = SpellType.None;
             result.Append("0-0-0");
             _res = result.ToString();
             return _res;
