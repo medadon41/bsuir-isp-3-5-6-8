@@ -15,8 +15,8 @@ namespace Lab3
         {
             Players players = new Players();
 
-            players[0].board.fillBoard();
-            players[1].board.fillBoard();
+            players[0].board.Fill();
+            players[1].board.Fill();
 
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Enemy Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
             players[1].board.Show();
@@ -48,8 +48,8 @@ namespace Lab3
             int target = int.Parse(_target) - 1;
 
             players[0].board[minion].Attack(players[1].board[target]);
-            players[0].board.Refill();
-            players[1].board.Refill();
+            players[0].board.Refill(players[0].hand[0]);
+            players[1].board.Refill(players[0].hand[0]);
 
             Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Enemy Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
             players[1].board.Show();
@@ -57,11 +57,10 @@ namespace Lab3
             players[0].board.Show();
 
             Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Hand~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            players[0].hand.fillHand();
+            players[0].hand.Fill();
             players[0].hand.Show();
 
             players[0].deck.fillDeck();
-
             int pick = 0;
             do
             {
@@ -83,7 +82,6 @@ namespace Lab3
             players[0].board.Show();
             Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Hand~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             players[0].hand.Show();
-
         }
 
     }

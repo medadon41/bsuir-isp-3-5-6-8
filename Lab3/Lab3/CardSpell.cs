@@ -78,11 +78,28 @@ namespace Lab3
                 {
                     cp[0].hand.Draw(this, ref cp[0].deck);
                     return;
+                } 
+                else if (_todo.StartsWith('5'))
+                {
+                    cp[0].hand.Draw(this, ref cp[0].deck);
+                    if (!cp[0].deck.checkEquality())
+                    {
+                        for (int i = 0; i < cp[0].board.length(); i++)
+                            cp[0].board[i].ChangeHealth(int.Parse(_todo.Substring(2, 1)));
+
+                        for (int i = 0; i < cp[1].board.length(); i++)
+                            cp[1].board[i].ChangeHealth(int.Parse(_todo.Substring(2, 1)));
+                        return;
+                    } 
+                    else
+                    {
+                        return;
+                    }
                 }
             }
 
-           cp[0].hand.handRefill(this);
-            cp[0].board.Refill();
+           cp[0].hand.Refill(this);
+           cp[0].board.Refill(this);
         }
 
     }

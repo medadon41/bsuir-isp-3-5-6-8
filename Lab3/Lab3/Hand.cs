@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lab3
 {
-    class Hand
+    class Hand : IShowable
     {
         private Card[] hand;
 
@@ -22,56 +22,33 @@ namespace Lab3
         {
             return hand.Length;
         }
-        public void fillHand()
+        public void Fill()
         {
             CardSpell _temp;
-            _temp = new CardSpell("Chaos Nova", 5, "Demon Hunter", "Common", "Deal 4 damage to all minions", false);
+            _temp = new CardSpell("Flash of Light", 1, "Paladin", "Common", "Draw a card", false);
             _temp.isInHand = true;
             hand[0] = _temp;
-            _temp = new CardSpell("Circle of Healing", 0, "Priest", "Common", "Restore 4 Health to all minions", false);
+            _temp = new CardSpell("Reno's Blessing", 2, "Priest", "Common", "If your deck has no dublicates, restore 5 health to all minions. Draw a card.", false);
             _temp.isInHand = true;
             hand[1] = _temp;
             _temp = new CardSpell("Flash Heal", 1, "Paladin", "Common",  "Restore 5 Health to a minion ", true);
             _temp.isInHand = true;
             hand[2] = _temp;
-            _temp = new CardSpell("Flash of Light", 1, "Paladin", "Common", "Draw a card", false);
+            _temp = new CardSpell("Chaos Nova", 5, "Demon Hunter", "Common", "Deal 4 damage to all minions", false);
             _temp.isInHand = true;
             hand[3] = _temp;
         }
         public void Show()
         {
-            for(int i = 0; i < hand.Length; i++) { 
-
-                Console.WriteLine($"{hand[i].manacost}");
-
-                Console.WriteLine($"{hand[i].name}");
-                Console.WriteLine($"Rarity: {hand[i].rarity} ");
-
-                Console.WriteLine($"{hand[i].description}");
-
-                //showing stats
-
-               if (hand[i].health != 0)
-               {
-                  StringBuilder s_stats = new StringBuilder(hand[i].description.Length);
-                  s_stats.Append(hand[i].attack);
-                  for (int j = 0; j < hand[i].name.Length - 1; j++)
-                  {
-                      s_stats.Append(' ');
-                  }
-                  s_stats.Append(hand[i].health);
-
-                  Console.WriteLine($"{s_stats}");         
-               }
-                Console.WriteLine($"Class: {hand[i].hero} ");
-                Console.WriteLine("-----------------------");
+            for(int i = 0; i < hand.Length; i++) {
+                hand[i].Show();
             }
                 
         }
 
-        public int handRefill(Card card)
+        public int Refill(Card card)
         {
-           card.isInHand = false;
+            card.isInHand = false;
             int _mod = 0;
             for (int i = 0; i < hand.Length; i++)
             {
@@ -104,13 +81,15 @@ namespace Lab3
         }
         public void Draw(Card tcard, ref Deck deck)
         {
-            int _mod = handRefill(tcard);
+            int _mod = Refill(tcard);
+            tcard.stype = SpellType.None;
+            Refill(tcard);
             Random rng = new Random();
             int ind = rng.Next(0, deck.length());
 
-            Card[] bTemp = new Card[hand.Length];
+            Card[] bTemp = new Card[hand.Length + 1];
 
-            for (int i = 0; i < bTemp.Length - 1; i++)
+            for (int i = 0; i < bTemp.Length - 1 ; i++)
             {
                 bTemp[i] = hand[i];
             }

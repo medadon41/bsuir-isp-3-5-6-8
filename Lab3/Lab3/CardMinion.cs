@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lab3
 {
-    class CardMinion: Card
+    class CardMinion: Card, IShowable
     {
         public string type = "None";
         public bool isAlive = true;
@@ -57,6 +57,29 @@ namespace Lab3
         {
             target.ChangeHealth(-this.attack);
             this.ChangeHealth(-target.attack);
+        }
+
+        public void Show()
+        {
+            Console.WriteLine($"{this.manacost}");
+
+            Console.WriteLine($"{this.name}");
+            Console.WriteLine($"Rarity: {this.rarity} ");
+
+            Console.WriteLine($"{this.description}");
+           
+            StringBuilder s_stats = new StringBuilder(this.description.Length);
+            s_stats.Append(this.attack);
+            for (int j = 0; j < this.name.Length - 1; j++)
+            {
+                s_stats.Append(' ');
+            }
+            s_stats.Append(this.health);
+
+            Console.WriteLine($"{s_stats}");
+
+            Console.WriteLine($"Class: {this.hero} ");
+            Console.WriteLine("-----------------------");
         }
     }
 }

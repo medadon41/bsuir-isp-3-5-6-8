@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lab3
 {
-    class Board
+    class Board : IShowable
     {
         private CardMinion[] board;
 
@@ -23,7 +23,7 @@ namespace Lab3
         {
             return board.Length;
         }
-        public void fillBoard()
+        public void Fill()
         {
             CardMinion _temp;
             _temp = new CardMinion("Ragnaros", 8, 8, 8, "None", "All", "Legendary", true, false, "At the end of your turn, deal 8 damage to random minion");
@@ -81,7 +81,7 @@ namespace Lab3
             }
         }
 
-        public void Refill()
+        public int Refill(Card card)
         {
             int _mod = 0;
             for (int i = 0; i < board.Length; i++)
@@ -107,6 +107,7 @@ namespace Lab3
                 j++;
             }
             board = bTemp;
+            return 0;
         }
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ISP 3\\bsuir-isp-3\\Lab3\\Lab3\\Lab3.csproj": {}
+    "D:\\ISP 3 5\\bsuir-isp-3-5\\Lab3\\Lab3\\Lab3.csproj": {}
   },
   "projects": {
-    "D:\\ISP 3\\bsuir-isp-3\\Lab3\\Lab3\\Lab3.csproj": {
+    "D:\\ISP 3 5\\bsuir-isp-3-5\\Lab3\\Lab3\\Lab3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ISP 3\\bsuir-isp-3\\Lab3\\Lab3\\Lab3.csproj",
+        "projectUniqueName": "D:\\ISP 3 5\\bsuir-isp-3-5\\Lab3\\Lab3\\Lab3.csproj",
         "projectName": "Lab3",
-        "projectPath": "D:\\ISP 3\\bsuir-isp-3\\Lab3\\Lab3\\Lab3.csproj",
+        "projectPath": "D:\\ISP 3 5\\bsuir-isp-3-5\\Lab3\\Lab3\\Lab3.csproj",
         "packagesPath": "C:\\Users\\Данила\\.nuget\\packages\\",
-        "outputPath": "D:\\ISP 3\\bsuir-isp-3\\Lab3\\Lab3\\obj\\",
+        "outputPath": "D:\\ISP 3 5\\bsuir-isp-3-5\\Lab3\\Lab3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Данила\\AppData\\Roaming\\NuGet\\NuGet.Config",

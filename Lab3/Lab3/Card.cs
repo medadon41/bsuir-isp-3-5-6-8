@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lab3
 {
-    abstract class Card
+    abstract class Card : IShowable, IEqutable<Card>
     {
         //inspired by hearthstone
 
@@ -53,6 +53,24 @@ namespace Lab3
             }
         }
 
+        public bool Equals(Card card)
+        {
+            return (this.name, this.description) == (card.name, card.description);
+        }
+
+        public void Show()
+        {
+            Console.WriteLine($"{this.manacost}");
+
+            Console.WriteLine($"{this.name}");
+            Console.WriteLine($"Rarity: {this.rarity} ");
+
+            Console.WriteLine($"{this.description}");
+
+            Console.WriteLine($"Class: {this.hero} ");
+            Console.WriteLine("-----------------------");
+        }
+
         public abstract void Cast(ref Players cp);
 
         public string WhatToDo(StringBuilder _desc)
@@ -64,7 +82,12 @@ namespace Lab3
             
             for (int i = 0; i < _desc.Length; i++)
             {
-                if (s_desc[i].ToLower() == "deal")
+                if(s_desc[i].ToLower() == "if")
+                {
+                    this.stype = SpellType.Draw;
+                    return "5-5-0";
+                }
+                else if (s_desc[i].ToLower() == "deal")
                 {
                     this.stype = SpellType.Damage;
                     result.Append("1-");
