@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lab3
 {
-    abstract class Card : IShowable, IEqutable<Card>
+    abstract class Card : IShowable
     {
         //inspired by hearthstone
 
@@ -19,6 +19,8 @@ namespace Lab3
         public StringBuilder description = new StringBuilder();
         public bool isTargetNeeded;
         private string id;
+
+        public delegate Players CommitCast(Players cp);
 
         public Card() { }
         public Card(string s_name, int s_mana, string s_hero, string s_rarity, string desc)
@@ -73,78 +75,125 @@ namespace Lab3
 
         public abstract void Cast(ref Players cp);
 
-        public string WhatToDo(StringBuilder _desc)
+        public CommitCast WhatToDo(StringBuilder _desc)
         {
             string _res = _desc.ToString();
             string[] s_desc = _res.Split(' ');
 
-            StringBuilder result = new StringBuilder(6);
+
+            CommitCast nothing = (cp) => { Console.WriteLine("Oops, not supported yet. ");
+                return cp;
+            };
             
-            for (int i = 0; i < _desc.Length; i++)
+            for (int i = 0; i < s_desc.Length; i++)
             {
                 if(s_desc[i].ToLower() == "if")
                 {
                     this.stype = SpellType.Draw;
-                    return "5-5-0";
+                    return nothing;
                 }
                 else if (s_desc[i].ToLower() == "deal")
                 {
                     this.stype = SpellType.Damage;
-                    result.Append("1-");
-                    if (s_desc[i + 3].ToLower() == "a") {
-                        result.Append($"{s_desc[i + 1]}-");
-                        result.Append('1');                                 //1-n-1 == deal n damage to a minion
-                        _res = result.ToString();                           //1-n-2 == deal n damage to all minions
-                        return _res;                                        //2-n-1 == restore n health to a minion
-                    } else                                                  //2-n-2 == restore n health to all minions
-                    {                                                       //3-1-0 == draw a card
-                        result.Append($"{s_desc[i + 1]}-");                 //3-n-0 == draw n cards
-                        result.Append('2');
-                        _res = result.ToString();
-                        return _res;
-                    }
+                    CommitCast dealDamage = (cp) =>
+                    {
+                        if (s_desc[i + 4].ToLower() == "a")
+                        {
+                            int _rep = 0;
+                            int _index = 0;
+                            do
+                            {
+                                Console.WriteLine("Choose the board (enemy/mine (e/m)): ");
+                                switch (Console.ReadLine())
+                                {
+                                    case "e": _index = 1; break;
+                                    case "m": _index = 0; break;
+                                    default: _rep = 1; break;
+                                }
+                            } while (_rep != 0);
+                            Console.WriteLine("Choose the target (the position on the board): ");
+                            string _target = Console.ReadLine();
+                            while (!CheckInt(_target))
+                            {
+                                Console.Write("Choose the target (the position on the board): ");
+                                _target = Console.ReadLine();
+                            }
+                            int target = int.Parse(_target) - 1;
+                            cp[_index].board[target].ChangeHealth(-int.Parse(s_desc[i+1]));
+                        }
+                        else
+                        {
+                            for (int i = 0; i < cp[0].board.length(); i++)
+                                cp[0].board[i].ChangeHealth(-int.Parse(s_desc[1]));
+
+                            for (int i = 0; i < cp[1].board.length(); i++)
+                                cp[1].board[i].ChangeHealth(-int.Parse(s_desc[1]));
+                        }
+
+                        return cp;
+                    };
+                    return dealDamage;
                 } else if(s_desc[i].ToLower() == "restore")
                 {
                     this.stype = SpellType.Heal;
-                    result.Append("2-");
-                    if (s_desc[i + 4].ToLower() == "a")
+                    CommitCast restoreHealth = (cp) =>
                     {
-                        result.Append($"{s_desc[i + 1]}-");
-                        result.Append('1');
-                        _res = result.ToString();
-                        return _res;
-                    }
-                    else
-                    {
-                        result.Append($"{s_desc[i + 1]}-");
-                        result.Append('2');
-                        _res = result.ToString();
-                        return _res;
-                    }
+                        if (s_desc[i + 4].ToLower() == "a")
+                        {
+                            int _rep = 0;
+                            int _index = 0;
+                            do
+                            {
+                                Console.WriteLine("Choose the board (enemy/mine (e/m)): ");
+                                switch (Console.ReadLine())
+                                {
+                                    case "e": _index = 1; break;
+                                    case "m": _index = 0; break;
+                                    default: _rep = 1; break;
+                                }
+                            } while (_rep != 0);
+                            Console.WriteLine("Choose the target (the position on the board): ");
+                            string _target = Console.ReadLine();
+                            while (!CheckInt(_target))
+                            {
+                                Console.Write("Choose the target (the position on the board): ");
+                                _target = Console.ReadLine();
+                            }
+                            int target = int.Parse(_target) - 1;
+                            cp[_index].board[target].ChangeHealth(int.Parse(s_desc[i + 1]));
+                        }
+                        else
+                        {
+                            for (int i = 0; i < cp[0].board.length(); i++)
+                                cp[0].board[i].ChangeHealth(int.Parse(s_desc[i + 1]));
+
+                            for (int i = 0; i < cp[1].board.length(); i++)
+                                cp[1].board[i].ChangeHealth(int.Parse(s_desc[i + 1]));
+                        }
+
+                        return cp;
+                    };
+                    return restoreHealth;
                 } else if (s_desc[i].ToLower() == "draw")
                 {
                     this.stype = SpellType.Draw;
-                    result.Append("3-");
                     if (s_desc[i + 1].ToLower() == "a")
                     {
-                        result.Append($"1-");
-                        result.Append('0');                              
-                        _res = result.ToString();                          
-                        return _res;                                        
+                        CommitCast drawCard = (cp) =>
+                        {
+                            cp[0].hand.Draw(this, cp[0].deck);
+                            return cp;
+                        };
+                        return drawCard;
                     }
                     else                                                  
                     {
-                        result.Append($"{s_desc[i + 1]}-");
-                        result.Append('0');
-                        _res = result.ToString();
-                        return _res;
+                        return nothing;
                     }
                 }
             }
             this.stype = SpellType.None;
-            result.Append("0-0-0");
-            _res = result.ToString();
-            return _res;
+            return nothing;
         }
     }
 }

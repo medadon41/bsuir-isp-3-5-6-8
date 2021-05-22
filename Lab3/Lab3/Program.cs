@@ -75,7 +75,7 @@ namespace Lab3
                 }
             } while (pick != 0);
 
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Enemy Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
             players[1].board.Show();
             Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Your Board~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");

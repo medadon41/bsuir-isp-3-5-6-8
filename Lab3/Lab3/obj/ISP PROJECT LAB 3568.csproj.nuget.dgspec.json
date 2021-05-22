@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ISP FULL PROJECT\\bsuir-isp-3-5-6-8\\Lab3\\Lab3\\Lab3.csproj": {}
+    "D:\\ISP FULL PROJECT\\bsuir-isp-3-5-6-8\\Lab3\\Lab3\\ISP PROJECT LAB 3568.csproj": {}
   },
   "projects": {
-    "D:\\ISP FULL PROJECT\\bsuir-isp-3-5-6-8\\Lab3\\Lab3\\Lab3.csproj": {
+    "D:\\ISP FULL PROJECT\\bsuir-isp-3-5-6-8\\Lab3\\Lab3\\ISP PROJECT LAB 3568.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ISP FULL PROJECT\\bsuir-isp-3-5-6-8\\Lab3\\Lab3\\Lab3.csproj",
-        "projectName": "Lab3",
-        "projectPath": "D:\\ISP FULL PROJECT\\bsuir-isp-3-5-6-8\\Lab3\\Lab3\\Lab3.csproj",
+        "projectUniqueName": "D:\\ISP FULL PROJECT\\bsuir-isp-3-5-6-8\\Lab3\\Lab3\\ISP PROJECT LAB 3568.csproj",
+        "projectName": "ISP PROJECT LAB 3568",
+        "projectPath": "D:\\ISP FULL PROJECT\\bsuir-isp-3-5-6-8\\Lab3\\Lab3\\ISP PROJECT LAB 3568.csproj",
         "packagesPath": "C:\\Users\\Данила\\.nuget\\packages\\",
         "outputPath": "D:\\ISP FULL PROJECT\\bsuir-isp-3-5-6-8\\Lab3\\Lab3\\obj\\",
         "projectStyle": "PackageReference",

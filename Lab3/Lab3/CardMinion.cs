@@ -13,6 +13,10 @@ namespace Lab3
         public int maxHealth;
         public override void Cast (ref Players cp) { }
 
+        public delegate string LogHandler(string message);
+
+        public event LogHandler CommitedAttack;
+
         public CardMinion(string s_name, int s_mana, int s_attack, int s_health, string s_type, string s_hero, string s_rarity, bool s_trgt, bool s_ntrgt, string desc)
         {
             name = s_name;
@@ -57,6 +61,8 @@ namespace Lab3
         {
             target.ChangeHealth(-this.attack);
             this.ChangeHealth(-target.attack);
+
+            CommitedAttack?.Invoke($"New attack: {this.name}({this.attack}/{this.health}) attacked {target.name}({target.attack}/{target.health})");
         }
 
         public void Show()

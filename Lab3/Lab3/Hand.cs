@@ -79,7 +79,7 @@ namespace Lab3
             }
             return _mod;
         }
-        public void Draw(Card tcard, ref Deck deck)
+        public void Draw(Card tcard, Deck deck)
         {
             int _mod = Refill(tcard);
             tcard.stype = SpellType.None;
@@ -95,9 +95,9 @@ namespace Lab3
             }
 
             bTemp[bTemp.Length - 1] = deck[ind];
+            bTemp[bTemp.Length - 1].isInHand = true;
 
             hand = bTemp;
-
         }
            
         

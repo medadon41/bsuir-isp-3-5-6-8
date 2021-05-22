@@ -1,0 +1,13 @@
+D:\ISP FULL PROJECT\bsuir-isp-3-5-6-8\Lab3\Lab3\bin\Debug\netcoreapp3.1\ISP PROJECT LAB 3568.exe
+D:\ISP FULL PROJECT\bsuir-isp-3-5-6-8\Lab3\Lab3\bin\Debug\netcoreapp3.1\ISP PROJECT LAB 3568.deps.json
+D:\ISP FULL PROJECT\bsuir-isp-3-5-6-8\Lab3\Lab3\bin\Debug\netcoreapp3.1\ISP PROJECT LAB 3568.runtimeconfig.json
+D:\ISP FULL PROJECT\bsuir-isp-3-5-6-8\Lab3\Lab3\bin\Debug\netcoreapp3.1\ISP PROJECT LAB 3568.runtimeconfig.dev.json
+D:\ISP FULL PROJECT\bsuir-isp-3-5-6-8\Lab3\Lab3\bin\Debug\netcoreapp3.1\ISP PROJECT LAB 3568.dll
+D:\ISP FULL PROJECT\bsuir-isp-3-5-6-8\Lab3\Lab3\bin\Debug\netcoreapp3.1\ISP PROJECT LAB 3568.pdb
+D:\ISP FULL PROJECT\bsuir-isp-3-5-6-8\Lab3\Lab3\obj\Debug\netcoreapp3.1\ISP PROJECT LAB 3568.csprojAssemblyReference.cache
+D:\ISP FULL PROJECT\bsuir-isp-3-5-6-8\Lab3\Lab3\obj\Debug\netcoreapp3.1\ISP PROJECT LAB 3568.AssemblyInfoInputs.cache
+D:\ISP FULL PROJECT\bsuir-isp-3-5-6-8\Lab3\Lab3\obj\Debug\netcoreapp3.1\ISP PROJECT LAB 3568.AssemblyInfo.cs
+D:\ISP FULL PROJECT\bsuir-isp-3-5-6-8\Lab3\Lab3\obj\Debug\netcoreapp3.1\ISP PROJECT LAB 3568.csproj.CoreCompileInputs.cache
+D:\ISP FULL PROJECT\bsuir-isp-3-5-6-8\Lab3\Lab3\obj\Debug\netcoreapp3.1\ISP PROJECT LAB 3568.dll
+D:\ISP FULL PROJECT\bsuir-isp-3-5-6-8\Lab3\Lab3\obj\Debug\netcoreapp3.1\ISP PROJECT LAB 3568.pdb
+D:\ISP FULL PROJECT\bsuir-isp-3-5-6-8\Lab3\Lab3\obj\Debug\netcoreapp3.1\ISP PROJECT LAB 3568.genruntimeconfig.cache
