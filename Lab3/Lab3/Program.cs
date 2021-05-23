@@ -11,6 +11,11 @@ namespace Lab3
             else return false;
         }
 
+        private static void DisplayMessage(string message)
+        {
+            Console.WriteLine(message);
+        }
+
         static void Main(string[] args)
         {
             Players players = new Players();
@@ -47,7 +52,9 @@ namespace Lab3
 
             int target = int.Parse(_target) - 1;
 
+            players[0].board[minion].CommitedAttack += DisplayMessage;
             players[0].board[minion].Attack(players[1].board[target]);
+
             players[0].board.Refill(players[0].hand[0]);
             players[1].board.Refill(players[0].hand[0]);
 

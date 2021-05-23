@@ -13,7 +13,7 @@ namespace Lab3
         public int maxHealth;
         public override void Cast (ref Players cp) { }
 
-        public delegate string LogHandler(string message);
+        public delegate void LogHandler(string message);
 
         public event LogHandler CommitedAttack;
 
