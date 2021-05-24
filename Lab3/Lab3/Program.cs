@@ -2,13 +2,25 @@
 
 namespace Lab3
 {
+    public delegate void CommitAttack();
 
     class Program
     {
-        static bool сheckInt(string _int)
+        public static void сheckInt(ref string _num, ref int num)
         {
-            if (int.TryParse(_int, out int test)) { return true; }
-            else return false;
+            while (_num == null)
+            {
+                try
+                {
+                    _num = Console.ReadLine();
+                    num = int.Parse(_num) - 1;
+                }
+                catch (FormatException)
+                {
+                    Console.Write("\nError. Enter only number from 1 to 5: ");
+                    _num = null;
+                }
+            }
         }
 
         private static void DisplayMessage(string message)
@@ -29,31 +41,48 @@ namespace Lab3
             players[0].board.Show();
 
             Console.Write("\nChoose a minion which will attack (it's position on your board): ");
+            
+            string _minion = null;
+            int minion = 0;
 
-            string _minion = Console.ReadLine();
-
-            while(!int.TryParse(_minion, out int test) || int.Parse(_minion) > players[0].board.length())
-            {
-                Console.Write("Choose a minion which will attack (it's position on your board): ");
-                _minion = Console.ReadLine();
-            }
-
-            int minion = int.Parse(_minion) - 1;
+            сheckInt(ref _minion, ref minion);
 
             Console.Write("\nChoose a minion to attack (it's position on enemy board): ");
+            string _target = null;
+            int target = 0;
 
-            string _target = Console.ReadLine();
-
-            while (!int.TryParse(_target, out int test) || int.Parse(_target) > players[1].board.length())
-            {
-                Console.Write("Choose a minion to attack (it's position on enemy board): ");
-                _target = Console.ReadLine();
-            }
-
-            int target = int.Parse(_target) - 1;
+            сheckInt(ref _target, ref target);
 
             players[0].board[minion].CommitedAttack += DisplayMessage;
-            players[0].board[minion].Attack(players[1].board[target]);
+
+            bool repeat = true;
+
+            while (repeat)
+            {
+                repeat = false;
+                try
+                {
+                    players[0].board[minion].Attack(players[1].board[target]);
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.Write("\nError. Enter only numbers from 1 to 5");
+                    Console.Write("\nChoose a minion which will attack (it's position on your board): ");
+
+                    _minion = null;
+                    minion = 0;
+
+                    сheckInt(ref _minion, ref minion);
+
+                    Console.Write("\nChoose a minion to attack (it's position on enemy board): ");
+                    _target = null;
+                    target = 0;
+
+                    сheckInt(ref _target, ref target);
+
+                    repeat = true;
+                }
+            }
 
             players[0].board.Refill(players[0].hand[0]);
             players[1].board.Refill(players[0].hand[0]);

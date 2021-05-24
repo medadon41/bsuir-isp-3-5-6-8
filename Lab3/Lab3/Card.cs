@@ -112,14 +112,28 @@ namespace Lab3
                                 }
                             } while (_rep != 0);
                             Console.WriteLine("Choose the target (the position on the board): ");
-                            string _target = Console.ReadLine();
-                            while (!CheckInt(_target))
+
+                            string _target = null;
+                            int target = 0;
+                            Program.сheckInt(ref _target, ref target);
+                            bool repeat = true;
+
+                            while (repeat)
                             {
-                                Console.Write("Choose the target (the position on the board): ");
-                                _target = Console.ReadLine();
+                                repeat = false;
+                                try
+                                {
+                                    cp[_index].board[target].ChangeHealth(-int.Parse(s_desc[i + 1]));
+                                }
+                                catch (IndexOutOfRangeException)
+                                {
+                                    _target = null;
+                                    target = 0;
+                                    Console.Write("Error. Enter only numbers from 1 to 5: ");
+                                    Program.сheckInt(ref _target, ref target);
+                                    repeat = true;
+                                }
                             }
-                            int target = int.Parse(_target) - 1;
-                            cp[_index].board[target].ChangeHealth(-int.Parse(s_desc[i+1]));
                         }
                         else
                         {
@@ -153,14 +167,27 @@ namespace Lab3
                                 }
                             } while (_rep != 0);
                             Console.WriteLine("Choose the target (the position on the board): ");
-                            string _target = Console.ReadLine();
-                            while (!CheckInt(_target))
+                            string _target = null;
+                            int target = 0;
+                            Program.сheckInt(ref _target, ref target);
+                            bool repeat = true;
+
+                            while (repeat)
                             {
-                                Console.Write("Choose the target (the position on the board): ");
-                                _target = Console.ReadLine();
+                                repeat = false;
+                                try
+                                {
+                                    cp[_index].board[target].ChangeHealth(-int.Parse(s_desc[i + 1]));
+                                }
+                                catch (IndexOutOfRangeException)
+                                {
+                                    _target = null;
+                                    target = 0;
+                                    Console.Write("Error. Enter only numbers from 1 to 5: ");
+                                    Program.сheckInt(ref _target, ref target);
+                                    repeat = true;
+                                }
                             }
-                            int target = int.Parse(_target) - 1;
-                            cp[_index].board[target].ChangeHealth(int.Parse(s_desc[i + 1]));
                         }
                         else
                         {
